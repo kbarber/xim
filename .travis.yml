@@ -1,0 +1,11 @@
+---
+language: ruby
+script: rake test
+notifications:
+  email: false
+gemfile:
+  - Gemfile
+rvm:
+  - 1.9.2
+  - 1.9.3
+  - ruby-head
