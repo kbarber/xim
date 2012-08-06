@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require 'xim'
+
+Xim::App.new(:file => ARGV[0])
