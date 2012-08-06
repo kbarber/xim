@@ -11,12 +11,16 @@ module Xim
 
       @mode = :normal
 
-      file = @opts[:file]
+      @file_name = @opts[:file] || nil
 
       init_screens
 
-      if file
-        load_file(:file => file)
+      if @file_name
+        if File.exists?(@file_name)
+          load_file
+        else
+          new_file
+        end
       else
         new_file
       end
@@ -57,9 +61,7 @@ module Xim
       @screen.refresh
     end
 
-    def load_file(opts = {})
-      @file_name = opts[:file]
-
+    def load_file
       @file_x = 0
       @file_y = 0
 
@@ -75,11 +77,10 @@ module Xim
       update_status_line
     end
 
-    def new_file(opts = {})
+    def new_file
       @file_x = 0
       @file_y = 0
       @file_contents = ["\n"]
-      @file_name = nil
       update_status_line
     end
 
